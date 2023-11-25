@@ -10,8 +10,9 @@ use Livewire\Volt\Component;
 new class extends Component
 {
     public string $name = '';
+    public string $username = '';
     public string $email = '';
-    public string $profile_visibility;
+    public string $profile_status;
 
 
     /**
@@ -20,8 +21,9 @@ new class extends Component
     public function mount(): void
     {
         $this->name = Auth::user()->name;
+        $this->username = Auth::user()->username;
         $this->email = Auth::user()->email;
-        $this->profile_visibility = Auth::user()->profile_visibility;
+        $this->profile_status = Auth::user()->profile_status;
     }
 
     /**
@@ -33,8 +35,9 @@ new class extends Component
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', Rule::unique(User::class)->ignore($user->id)],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-            'profile_visibility' => ['required','in:private,public'],
+            'profile_status' => ['required','in:private,public'],
         ]);
 
         $user->fill($validated);
@@ -87,6 +90,12 @@ new class extends Component
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+         <div>
+            <x-input-label for="name" :value="__('Username')" />
+            <x-text-input wire:model="username" id="username" class="block mt-1 w-full" type="text" name="username" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input wire:model="email" id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
@@ -112,16 +121,16 @@ new class extends Component
         </div>
 
         <div class="mt-4">
-            <x-input-label for="profile_visibility" :value="__('Profile visibility')" />
+            <x-input-label for="profile_status" :value="__('Profile status')" />
             <div style="display: inline-block; margin-right: 15px;">
-                <input type="radio" id="private" value="private" wire:model="profile_visibility" name="profile_visibility">
+                <input type="radio" id="private" value="private" wire:model="profile_status" name="profile_status">
                 <label for="private">Private</label>
             </div>
             <div style="display: inline-block;">
-                <input type="radio" id="public" value="public" wire:model="profile_visibility" name="profile_visibility">
+                <input type="radio" id="public" value="public" wire:model="profile_status" name="profile_status">
                 <label for="public">Public</label>
             </div>
-            <x-input-error :messages="$errors->get('profile_visibility')" class="mt-2" />
+            <x-input-error :messages="$errors->get('profile_status')" class="mt-2" />
         </div>
 
 
