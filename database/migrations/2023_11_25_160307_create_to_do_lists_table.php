@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('to_do_lists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('owner');
-            $table->string('name');
+            $table->string('name', 255);
             $table->text('description');
             $table->enum('progress', ['active', 'completed'])->default('active');
             $table->enum('todo_status', ['private', 'public'])->default('private');
