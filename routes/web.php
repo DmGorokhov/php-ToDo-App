@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    ToDoListController,
+};
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +27,9 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::get('todolist/create', 'ToDoListController@create')
+    ->middleware(['auth'])
+    ->name('todolist.create');
 
 require __DIR__.'/auth.php';
