@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User;
+
+
 class ToDoList extends Model
 {
     use HasFactory;
@@ -12,6 +16,14 @@ class ToDoList extends Model
     protected $fillable = [
         'name',
         'description',
+        'progress',
         'todo_status'
     ];
+
+    
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'owner');
+    }
+
 }
