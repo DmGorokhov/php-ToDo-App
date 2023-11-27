@@ -21,7 +21,7 @@ class ToDoListController extends Controller
      */
     public function create()
     {
-        return view('todolist.create');
+        //
     }
 
     /**
@@ -53,7 +53,7 @@ class ToDoListController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return view('todolist.update', ['todoID' => $id]);
     }
 
     /**

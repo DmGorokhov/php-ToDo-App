@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\ToDoList;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -44,4 +47,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function todolists(): HasMany
+    {
+        return $this->hasMany(ToDoList::class, 'owner');
+    }
+
+    public function hasPublicProfile(): bool
+    {
+        return $this->profile_status === 'public';
+    }
+
+
+
 }

@@ -28,8 +28,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('todolist/create', 'ToDoListController@create')
+Route::get('todo/{todo_id}/update', 'ToDoListController@update')
     ->middleware(['auth'])
-    ->name('todolist.create');
+    ->name('todolist.update');
 
 require __DIR__.'/auth.php';

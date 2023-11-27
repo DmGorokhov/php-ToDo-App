@@ -4,4 +4,5 @@
             {{ __('Welcome to ToDo lists service!!!') }}
         </h2>
     </x-slot>
+    
 </x-app-layout>

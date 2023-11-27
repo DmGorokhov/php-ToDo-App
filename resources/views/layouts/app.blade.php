@@ -13,6 +13,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Livewire Styles -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -32,5 +36,6 @@
                 {{ $slot }}
             </main>
         </div>
+        <!-- Livewire Scripts -->
     </body>
 </html>
