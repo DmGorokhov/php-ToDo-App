@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('owner');
             $table->string('name', 255);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->enum('progress', ['active', 'completed'])->default('active');
             $table->enum('todo_status', ['private', 'public'])->default('private');
             $table->foreign('owner')->references('id')->on('users')->onDelete('cascade');
@@ -27,7 +27,7 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     */
+     */ 
     public function down(): void
     {
         Schema::dropIfExists('to_do_lists');
