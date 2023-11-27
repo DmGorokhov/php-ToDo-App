@@ -10,4 +10,5 @@ db-prepare:
 db-fill:
 	php artisan db:seed --class=UsersTableSeeder && php artisan db:seed --class=ToDoListsTableSeeder
 
-
+start-dev:
+	php artisan serve
