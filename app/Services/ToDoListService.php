@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Services\Interfaces\ToDoListInterface;
 
 use App\Models\{
     User,
@@ -10,60 +11,52 @@ use App\Models\{
     };
 
 
-class ToDoListService
+class ToDoListService implements ToDoListInterface
 {
-    
     /**
-     * Actions with todo lists.
+     * Actions with todo list.
      */
-    
-    
-    public function findToDoList(int $id)
+        
+    public function findToDoList(int $todoID)
     {
-        $toDoList = ToDoList::find($id);
+        $toDoList = ToDoList::find($todoID);
         return $toDoList;
     }
-    
-    
-    
-    public function storeToDoList(User $owner, array $params)
+        
+    public function storeToDoList(int $ownerID, array $params)
     {
         $toDoList = new ToDoList();
-        $toDoList->owner = $owner->id;
+        $toDoList->owner = $ownerID;
         $toDoList->fill($params);
         $toDoList->save();
     }
-
     
-    public function updateToDoList(int $todo_id, array $params)
+    public function updateToDoList(int $todoID, array $params)
     {
-        $toDoList = ToDoList::findOrFail($todo_id);
+        $toDoList = ToDoList::findOrFail($todoID);
         $toDoList->fill($params);
         $toDoList->save();
 
     }
-   
-    
-    public function destroyToDoList(int $todo_id)
+       
+    public function destroyToDoList(int $todoID)
     {
-        $toDoList = ToDoList::find($todo_id);
+        $toDoList = ToDoList::find($todoID);
         if ($toDoList) {
             $toDoList->delete();
         }
     }
 
-    public function getUserToDoLists(int $user_id)
+    public function getUserToDoLists(int $userID)
     {
-        $toDoLists = User::find($user_id)->todolists()->orderBy('created_at', 'desc')->get();
+        $toDoLists = User::find($userID)->todolists()->orderBy('created_at', 'desc')->get();
         return $toDoLists;
     }
-
 
     /**
      * Actions with todo list tasks.
      */
-    
-    
+        
     public function storeTask(int $todoID, string $taskName)
     {
         $task = new Task();

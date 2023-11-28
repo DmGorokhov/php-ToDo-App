@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 use App\Livewire\Forms\ToDoListForm;
+use App\Services\Interfaces\ToDoListInterface;
 use App\Services\ToDoListService;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,12 +13,12 @@ class CreateToDoList extends Component
 {
     public ToDoListForm $form;
          
-    public function save(ToDoListService $toDoListService)
+    public function save(ToDoListInterface $toDoListService)
     {
         $this->validate();
-        $owner = Auth::user();
+        $ownerID = Auth::user()->id;
         $data = $this->form->all(); 
-        $toDoListService->storeToDoList($owner, $data);
+        $toDoListService->storeToDoList($ownerID, $data);
 
         $this->dispatch('todo-created');
     }

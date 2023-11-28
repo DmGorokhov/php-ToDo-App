@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
-use App\Services\ToDoListService;
 use Illuminate\Support\Facades\Auth;
+
+use App\Services\Interfaces\ToDoListInterface;
+use App\Services\ToDoListService;
 
 
 class TasksTable extends Component
@@ -19,14 +21,14 @@ class TasksTable extends Component
     }   
     
     #[On('task-deleted')]
-    public function boot(ToDoListService $toDoListService)
+    public function boot(ToDoListInterface $toDoListService)
     {
         
         $this->tasksByToDoList = $toDoListService->getTasksByToDo($this->todoID);
 
     }
      
-    public function delete(ToDoListService $toDoListService, $task_id)
+    public function delete(ToDoListInterface $toDoListService, $task_id)
     {
         $toDoListService->destroyTask($task_id);
         $this->dispatch('task-deleted');
