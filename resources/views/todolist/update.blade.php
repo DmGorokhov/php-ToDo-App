@@ -10,6 +10,10 @@
         <div class="flex-grow max-w-0xl mx-end sm:px-0 lg:px-0 h-full">
             <div class="bg-white overflow-hidden shadow-sm h-full">
                 <div class="p-6 text-gray-900">
+                    @livewire('create-task', ['todoID' => $todoID])
+                </div>
+                <div>
+                    @livewire('tasks-table', ['todoID' => $todoID])
                 </div>
             </div>
         </div>

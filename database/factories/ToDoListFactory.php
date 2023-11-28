@@ -20,7 +20,7 @@ class ToDoListFactory extends Factory
      * @return array<string, mixed>
      */
     
-     protected $model = ToDoList::class;
+    protected $model = ToDoList::class;
     
     public function definition(): array
     {
