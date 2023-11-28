@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Services\Interfaces\ToDoListInterface;
 use App\Services\ToDoListService;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class CreateTask extends Component
         $this->todoID = $todoID;
     }
 
-    public function saveTask(ToDoListService $ToDoListService)
+    public function saveTask(ToDoListInterface $ToDoListService)
     {
         
         $ToDoListService->storeTask($this->todoID, $this->name);

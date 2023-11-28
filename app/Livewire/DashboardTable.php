@@ -4,32 +4,31 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
-use App\Services\ToDoListService;
 use Illuminate\Support\Facades\Auth;
+
+use App\Services\Interfaces\ToDoListInterface;
+use App\Services\ToDoListService;
 
 
 class DashboardTable extends Component
 {
     public $toDoLists = []; 
     public $authUserID;
-    
-    
-   
-    
+        
     #[On('todo-deleted')]
-    public function boot(ToDoListService $toDoListService)
+    public function boot(ToDoListInterface $ToDoListService)
     {
         if ($this->authUserID === null) { 
             $this->authUserID = Auth::user()->id;
             }
         
-        $this->toDoLists = $toDoListService->getUserToDoLists($this->authUserID);
+        $this->toDoLists = $ToDoListService->getUserToDoLists($this->authUserID);
 
     }
      
-    public function delete(ToDoListService $toDoListService, $todo_id)
+    public function delete(ToDoListInterface $ToDoListService, $todo_id)
     {
-        $toDoListService->destroyToDoList($todo_id);
+        $ToDoListService->destroyToDoList($todo_id);
         $this->dispatch('todo-deleted');
 
     }
