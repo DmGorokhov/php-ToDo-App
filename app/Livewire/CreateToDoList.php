@@ -10,10 +10,8 @@ use Livewire\Component;
 
 class CreateToDoList extends Component
 {
-    
     public ToDoListForm $form;
-   
-      
+         
     public function save(ToDoListService $toDoListService)
     {
         $this->validate();
@@ -23,9 +21,7 @@ class CreateToDoList extends Component
 
         $this->dispatch('todo-created');
     }
-    
-    
-    
+        
     public function render()
     {
         return view('livewire.todolist.create-to-do-list');

@@ -4,18 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- Livewire Styles -->
+
+        <script src="https://cdn.tailwindcss.com"></script>
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/app.js') }}"></script>
+
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        <!-- Livewire Styles -->
-        <script src="https://cdn.tailwindcss.com"></script>
 
     </head>
     <body class="font-sans antialiased">
@@ -37,5 +38,6 @@
             </main>
         </div>
         <!-- Livewire Scripts -->
+        <livewire:scripts />
     </body>
 </html>
