@@ -2,7 +2,7 @@ install:
 	composer install
 
 install-frontend:
-	npm ci && npm build
+	npm ci && npm run build
 
 
 console:
