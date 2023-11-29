@@ -22,6 +22,12 @@ class ToDoListService implements ToDoListInterface
         $toDoList = ToDoList::find($todoID);
         return $toDoList;
     }
+
+    public function getPublicToDoLists(int $paginate = 10)
+    {
+        $publicToDoLists = ToDoList::public()->paginate();
+        return $publicToDoLists;
+    }
         
     public function storeToDoList(int $ownerID, array $params)
     {
@@ -78,5 +84,4 @@ class ToDoListService implements ToDoListInterface
             $task->delete();
         }
     }
-
 }

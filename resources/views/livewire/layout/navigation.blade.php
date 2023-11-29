@@ -36,17 +36,18 @@ new class extends Component
                             {{ __('MyDashboard') }}
                         </x-nav-link>
                     </div>
-                @endauth
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Account') }}
+                    <x-nav-link :href="route('user.show', auth()->user()->id)" :active="request()->routeIs('user.show')" wire:navigate>
+                        {{ __('My ToDo') }}
                     </x-nav-link>
                 </div>
+                @endauth
+
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Shared ToDo\'s') }}
+                    <x-nav-link :href="route('todoindex')" :active="request()->routeIs('todoindex')" wire:navigate>
+                        {{ __('Public ToDoIndex') }}
                     </x-nav-link>
                 </div>
 

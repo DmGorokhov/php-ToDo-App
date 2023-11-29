@@ -15,6 +15,7 @@ Interface ToDoListInterface
     public function updateToDoList(int $todoID, array $params);
     public function destroyToDoList(int $todoID);
     public function getUserToDoLists(int $userID);
+    public function getPublicToDoLists(int $paginate);
    
     /**
      * Actions with todo list tasks.
