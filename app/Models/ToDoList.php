@@ -26,7 +26,6 @@ class ToDoList extends Model
         'progress',
         'todo_status'
     ];
-
     
     public function owner(): BelongsTo
     {
@@ -38,4 +37,14 @@ class ToDoList extends Model
         return $this->hasMany(Task::class, 'todoList');
     }
 
+    public function scopePublic($query)
+    {
+        return $query->where('todo_status', 'public');
+    }
+
+    public function scopeWithOwner($query)
+    {
+        return $query->with(['owner']);
+    }
+    
 }

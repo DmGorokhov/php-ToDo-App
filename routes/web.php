@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     ToDoListController,
+    UserController,
 };
 
 
@@ -28,8 +29,17 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::get('user/{user_id}', 'UserController@show')
+    ->middleware(['auth'])
+    ->name('user.show');
+
+
 Route::get('todo/{todo_id}/update', 'ToDoListController@update')
     ->middleware(['auth'])
     ->name('todolist.update');
+
+Route::get('todo/{todo_id}', 'ToDoListController@show')->name('todolist.show');
+
+
 
 require __DIR__.'/auth.php';

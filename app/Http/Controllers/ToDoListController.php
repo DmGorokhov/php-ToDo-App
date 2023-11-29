@@ -5,23 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\ToDoList;
 
 use Illuminate\Http\Request;
+use App\Services\Interfaces\ToDoListInterface;
+use App\Services\ToDoListService;
 
 class ToDoListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    
+    public function show(ToDoListInterface $ToDoListService, string $todoID)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $todoList = $ToDoListService->findToDoList($todoID);
+        return view('todolist.show', ['todoID'=>$todoID, 
+                                      'todoName'=> $todoList->name,
+                                      'todoDescription'=> $todoList->description]
+                    );
     }
 
     /**

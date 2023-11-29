@@ -58,6 +58,14 @@ class User extends Authenticatable
         return $this->profile_status === 'public';
     }
 
+    public function getUserName()
+    {
+        return $this->username;
+    }
 
+    public function isPublic()
+    {
+        return $this->profile_status === 'public';
+    }
 
 }
