@@ -26,7 +26,7 @@ class TaskFactory extends Factory
     {
         return [
             'todoList' => ToDoList::inRandomOrder()->first()->id,
-            'name' => $this->faker->word(),
+            'name' => $this->faker->unique()->word(),
             'progress' => $this->faker->randomElement(['active', 'completed']),
         ];
     }
