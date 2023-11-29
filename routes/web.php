@@ -29,6 +29,9 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('todoindex', 'todoindex')
+    ->name('todoindex');
+
 Route::get('user/{user_id}', 'UserController@show')
     ->middleware(['auth'])
     ->name('user.show');

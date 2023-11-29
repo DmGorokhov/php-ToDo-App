@@ -41,10 +41,4 @@ class ToDoList extends Model
     {
         return $query->where('todo_status', 'public');
     }
-
-    public function scopeWithOwner($query)
-    {
-        return $query->with(['owner']);
-    }
-    
 }

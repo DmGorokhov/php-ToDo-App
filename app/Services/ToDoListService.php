@@ -23,9 +23,9 @@ class ToDoListService implements ToDoListInterface
         return $toDoList;
     }
 
-    public function getPublicToDoLists()
+    public function getPublicToDoLists(int $paginate = 10)
     {
-        $publicToDoLists = ToDoList::public()->withOwner()->get();
+        $publicToDoLists = ToDoList::public()->paginate();
         return $publicToDoLists;
     }
         
