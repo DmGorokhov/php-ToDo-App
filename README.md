@@ -40,6 +40,7 @@ You can modfify it if prefer other database for development
 3.1.1 Setup app on local machine.
 ```bash
 make setup
+make install-frontend
 ```
 OR...  
 

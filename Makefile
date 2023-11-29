@@ -1,8 +1,16 @@
 install:
 	composer install
 
+install-frontend:
+	npm ci && npm build
+
+
 console:
 	php artisan tinker
+
+
+create-db-dev:
+	touch database/database.sqlite
 
 db-prepare:
 	php artisan migrate:fresh
@@ -18,7 +26,13 @@ start-dev:
 reload:
 	composer dump-autoload
 
-setup: install db-prepare db-fill
+env-prepare:
+	cp -n .env.example .env || true
+
+key:
+	php artisan key:generate
+
+setup: env-prepare install key create-db-dev db-prepare db-fill
 
 build:
 	docker build -t todo-app .
