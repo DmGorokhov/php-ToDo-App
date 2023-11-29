@@ -19,7 +19,7 @@ class ToDoListPolicy
         }
 
         // If the todo_status is private, only allow the owner to view it
-        if ($toDoList->todo_status == 'private' && $user->id == $toDoList->owner) {
+        if ($toDoList->todo_status === 'private' && $user->id === $toDoList->owner) {
             return true;
         }
 
