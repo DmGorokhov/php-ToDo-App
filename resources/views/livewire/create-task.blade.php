@@ -4,7 +4,7 @@
             <div>
                 <x-input-label for="name" :value="__('New task name')" />
                 <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
-                @error('form.name') <span class="error">{{ $message }}</span> @enderror
+                @error('name') <span class="error">{{ $message }}</span> @enderror
             </div>
 
             <div class="mt-4">
