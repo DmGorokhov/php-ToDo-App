@@ -9,7 +9,7 @@
         <div class="flex-grow max-w-0xl mx-end sm:px-0 lg:px-0 h-full">
             <div class="bg-white overflow-hidden shadow-sm h-full">
                 <div>
-                    @livewire('tasks-table', ['todoID' => $todoID])
+                    @livewire('task-index-by-to-do', ['todoID' => $todoID])
                 </div>
             </div>
         </div>
